@@ -1,0 +1,108 @@
+:root {
+    --bg: #015;
+    --yellow-dark: #980;
+    --yellow: #fff000;
+    --magenta-dark: #909;
+    --magenta: #f1d;
+    --cyan-dark: #007d99;
+    --cyan: #1ff;
+    --size: 85vmin;
+    --border-width: 2vmin;
+    --duration: 5s;
+    --ease: ease-in-out;
+  }
+  html,
+  body {
+    height: 100%;
+    background: var(--bg);
+    margin: 0;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .logo {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    padding: 0.5vmin;
+    overflow: hidden;
+  }
+  .border {
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(
+      var(--yellow) 0deg 120deg,
+      var(--magenta) 120deg 240deg,
+      var(--cyan) 240deg 360deg
+    );
+    transform-origin: center;
+    animation-name: spin-border;
+  }
+  svg {
+    position: absolute;
+    top: var(--border-width);
+    left: var(--border-width);
+    width: calc(100% - var(--border-width) * 2);
+    width: calc(100% - var(--border-width) * 2);
+  }
+  circle {
+    opacity: 0.75;
+  }
+  .border,
+  path {
+    animation-duration: var(--duration);
+    animation-timing-function: var(--ease);
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+  path {
+    animation-name: spin-gear;
+  }
+  .line-c,
+  .line-m,
+  .line-y {
+    mix-blend-mode: screen;
+  }
+  .line-c,
+  .gear-c {
+    --revolutions: 3;
+    transform-origin: 28.49% 57.13%;
+  }
+  .line-m,
+  .gear-m {
+    --revolutions: 6;
+    transform-origin: 79.5% 59.25%;
+  }
+  .line-y,
+  .gear-y {
+    --revolutions: -4;
+    transform-origin: 61.25% 36%;
+  }
+  
+  @keyframes spin-border {
+    0%,
+    10% {
+      transform: rotate(-60deg);
+    }
+    90%,
+    100% {
+      transform: rotate(300deg);
+    }
+  }
+  @keyframes spin-gear {
+    0%,
+    10% {
+      transform: rotate(0deg);
+    }
+    90%,
+    100% {
+      transform: rotate(calc(360deg * var(--revolutions)));
+    }
+  }
+  
